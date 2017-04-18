@@ -10,6 +10,10 @@ def note_name(number):
   return notes[mod12(number)]
 
 
+def notes_names(notes):
+  return [note_name(n) for n in notes]
+
+
 def accidental_delta(acc):
   if acc == '#':
     return 1
@@ -60,5 +64,22 @@ def interval(x, y):
   return mod12(x - y)
 
 
+def transposition(notes, index):
+  return [mod12(n + index) for n in notes]
+
+
 def retrograde(notes):
   return list(reversed(notes))
+
+
+def rotate(item, n=1):
+  modn = n % len(item)
+  return item[modn:] + item[0:modn]
+
+
+c_major_scale = [0, 2, 4, 5, 7, 9, 11]
+
+dorian_mode = rotate(c_major_scale)
+phrygian_mode = rotate(dorian_mode)
+lydian_mode = rotate(phrygian_mode)
+mixolydian_mode = rotate(lydian_mode)
